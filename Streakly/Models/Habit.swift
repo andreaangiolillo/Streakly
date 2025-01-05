@@ -19,6 +19,15 @@ struct TimeValue: Equatable {
     var totalMinutes: Int {
         return hours * 60 + minutes
     }
+    
+    var totalSeconds: Int {
+        return totalMinutes * 60
+    }
+    
+    init(hours: Int = 0, minutes: Int = 0) {
+        self.hours = hours
+        self.minutes = minutes
+    }
 }
 
 struct Habit: Identifiable {

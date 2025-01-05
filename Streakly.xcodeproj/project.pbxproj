@@ -6,7 +6,22 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		650C7FB32D2B2479004FF4A8 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 650C7FB22D2B2479004FF4A8 /* WidgetKit.framework */; };
+		650C7FB52D2B2479004FF4A8 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 650C7FB42D2B2479004FF4A8 /* SwiftUI.framework */; };
+		650C7FC62D2B247B004FF4A8 /* StreaklyWidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 650C7FB02D2B2479004FF4A8 /* StreaklyWidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		650C7FD02D2B25CB004FF4A8 /* TimerAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650C7FCE2D2B2577004FF4A8 /* TimerAttributes.swift */; };
+		650C7FD12D2B2669004FF4A8 /* TimerAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650C7FCE2D2B2577004FF4A8 /* TimerAttributes.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
+		650C7FC42D2B247B004FF4A8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 65EFAA5B2D2965C700F635E3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 650C7FAF2D2B2479004FF4A8;
+			remoteInfo = StreaklyWidgetsExtension;
+		};
 		65EFAA742D2965C900F635E3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 65EFAA5B2D2965C700F635E3 /* Project object */;
@@ -23,13 +38,38 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		650C7FCB2D2B247B004FF4A8 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				650C7FC62D2B247B004FF4A8 /* StreaklyWidgetsExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		650C7FB02D2B2479004FF4A8 /* StreaklyWidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = StreaklyWidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		650C7FB22D2B2479004FF4A8 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		650C7FB42D2B2479004FF4A8 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		650C7FCE2D2B2577004FF4A8 /* TimerAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerAttributes.swift; sourceTree = SOURCE_ROOT; };
 		65EFAA632D2965C700F635E3 /* Streakly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Streakly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65EFAA732D2965C900F635E3 /* StreaklyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StreaklyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		65EFAA7D2D2965C900F635E3 /* StreaklyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StreaklyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		650C7FCA2D2B247B004FF4A8 /* Exceptions for "StreaklyWidgets" folder in "StreaklyWidgetsExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 650C7FAF2D2B2479004FF4A8 /* StreaklyWidgetsExtension */;
+		};
 		6564699B2D29E56B003BDA2B /* Exceptions for "Streakly" folder in "Streakly" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -40,6 +80,14 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		650C7FB62D2B2479004FF4A8 /* StreaklyWidgets */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				650C7FCA2D2B247B004FF4A8 /* Exceptions for "StreaklyWidgets" folder in "StreaklyWidgetsExtension" target */,
+			);
+			path = StreaklyWidgets;
+			sourceTree = "<group>";
+		};
 		65EFAA652D2965C700F635E3 /* Streakly */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -61,6 +109,15 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		650C7FAD2D2B2479004FF4A8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				650C7FB52D2B2479004FF4A8 /* SwiftUI.framework in Frameworks */,
+				650C7FB32D2B2479004FF4A8 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		65EFAA602D2965C700F635E3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -85,12 +142,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		650C7FB12D2B2479004FF4A8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				650C7FB22D2B2479004FF4A8 /* WidgetKit.framework */,
+				650C7FB42D2B2479004FF4A8 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		65EFAA5A2D2965C700F635E3 = {
 			isa = PBXGroup;
 			children = (
+				650C7FCE2D2B2577004FF4A8 /* TimerAttributes.swift */,
 				65EFAA652D2965C700F635E3 /* Streakly */,
 				65EFAA762D2965C900F635E3 /* StreaklyTests */,
 				65EFAA802D2965C900F635E3 /* StreaklyUITests */,
+				650C7FB62D2B2479004FF4A8 /* StreaklyWidgets */,
+				650C7FB12D2B2479004FF4A8 /* Frameworks */,
 				65EFAA642D2965C700F635E3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -101,6 +170,7 @@
 				65EFAA632D2965C700F635E3 /* Streakly.app */,
 				65EFAA732D2965C900F635E3 /* StreaklyTests.xctest */,
 				65EFAA7D2D2965C900F635E3 /* StreaklyUITests.xctest */,
+				650C7FB02D2B2479004FF4A8 /* StreaklyWidgetsExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -108,6 +178,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		650C7FAF2D2B2479004FF4A8 /* StreaklyWidgetsExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 650C7FC72D2B247B004FF4A8 /* Build configuration list for PBXNativeTarget "StreaklyWidgetsExtension" */;
+			buildPhases = (
+				650C7FAC2D2B2479004FF4A8 /* Sources */,
+				650C7FAD2D2B2479004FF4A8 /* Frameworks */,
+				650C7FAE2D2B2479004FF4A8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				650C7FB62D2B2479004FF4A8 /* StreaklyWidgets */,
+			);
+			name = StreaklyWidgetsExtension;
+			packageProductDependencies = (
+			);
+			productName = StreaklyWidgetsExtension;
+			productReference = 650C7FB02D2B2479004FF4A8 /* StreaklyWidgetsExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		65EFAA622D2965C700F635E3 /* Streakly */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 65EFAA872D2965C900F635E3 /* Build configuration list for PBXNativeTarget "Streakly" */;
@@ -115,10 +207,12 @@
 				65EFAA5F2D2965C700F635E3 /* Sources */,
 				65EFAA602D2965C700F635E3 /* Frameworks */,
 				65EFAA612D2965C700F635E3 /* Resources */,
+				650C7FCB2D2B247B004FF4A8 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				650C7FC52D2B247B004FF4A8 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				65EFAA652D2965C700F635E3 /* Streakly */,
@@ -186,6 +280,9 @@
 				LastSwiftUpdateCheck = 1600;
 				LastUpgradeCheck = 1600;
 				TargetAttributes = {
+					650C7FAF2D2B2479004FF4A8 = {
+						CreatedOnToolsVersion = 16.0;
+					};
 					65EFAA622D2965C700F635E3 = {
 						CreatedOnToolsVersion = 16.0;
 					};
@@ -216,11 +313,19 @@
 				65EFAA622D2965C700F635E3 /* Streakly */,
 				65EFAA722D2965C900F635E3 /* StreaklyTests */,
 				65EFAA7C2D2965C900F635E3 /* StreaklyUITests */,
+				650C7FAF2D2B2479004FF4A8 /* StreaklyWidgetsExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		650C7FAE2D2B2479004FF4A8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		65EFAA612D2965C700F635E3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -245,10 +350,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		650C7FAC2D2B2479004FF4A8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				650C7FD02D2B25CB004FF4A8 /* TimerAttributes.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		65EFAA5F2D2965C700F635E3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				650C7FD12D2B2669004FF4A8 /* TimerAttributes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,6 +383,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		650C7FC52D2B247B004FF4A8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 650C7FAF2D2B2479004FF4A8 /* StreaklyWidgetsExtension */;
+			targetProxy = 650C7FC42D2B247B004FF4A8 /* PBXContainerItemProxy */;
+		};
 		65EFAA752D2965C900F635E3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 65EFAA622D2965C700F635E3 /* Streakly */;
@@ -282,6 +401,60 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		650C7FC82D2B247B004FF4A8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BK8RRPUN57;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = StreaklyWidgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = StreaklyWidgets;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.andreangiolillo.Streakly.StreaklyWidgets;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		650C7FC92D2B247B004FF4A8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BK8RRPUN57;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = StreaklyWidgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = StreaklyWidgets;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.andreangiolillo.Streakly.StreaklyWidgets;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		65EFAA852D2965C900F635E3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -413,6 +586,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Streakly/Info.plist;
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
+				INFOPLIST_KEY_NSSupportsLiveActivitiesFrequentUpdates = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -443,6 +618,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Streakly/Info.plist;
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
+				INFOPLIST_KEY_NSSupportsLiveActivitiesFrequentUpdates = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -536,6 +713,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		650C7FC72D2B247B004FF4A8 /* Build configuration list for PBXNativeTarget "StreaklyWidgetsExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				650C7FC82D2B247B004FF4A8 /* Debug */,
+				650C7FC92D2B247B004FF4A8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		65EFAA5E2D2965C700F635E3 /* Build configuration list for PBXProject "Streakly" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

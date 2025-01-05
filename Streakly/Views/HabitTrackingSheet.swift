@@ -1,5 +1,6 @@
 // Views/HabitTrackingSheet.swift
 import SwiftUI
+import ActivityKit
 
 struct HabitTrackingSheet: View {
     @Environment(\.dismiss) var dismiss
@@ -7,9 +8,14 @@ struct HabitTrackingSheet: View {
     let habit: Habit
     
     @State private var currentCount = 0
-    @State private var timerRunning = false
-    @State private var elapsedSeconds = 0
-    @State private var timer: Timer?
+    
+    private var elapsedSeconds: Int {
+        habitStore.getProgress(for: habit.id)?.duration ?? 0
+    }
+    
+    private var timerRunning: Bool {
+        habitStore.isTimerRunning(for: habit.id)
+    }
     
     var formattedTime: String {
         let hours = elapsedSeconds / 3600
@@ -21,17 +27,17 @@ struct HabitTrackingSheet: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 20) {
-                // Habit Header
+                // Habit Header with more compact design
                 HStack {
                     Image(systemName: habit.iconName)
-                        .font(.title)
+                        .font(.title2)
                         .foregroundColor(habit.color)
                     
                     Text(habit.name)
-                        .font(.title2)
+                        .font(.title3)
                         .bold()
                 }
-                .padding(.top)
+                .padding(.top, 8)
                 
                 if habit.trackingUnit == .count {
                     countBasedTracking
@@ -41,56 +47,36 @@ struct HabitTrackingSheet: View {
                 
                 Spacer()
             }
+            .padding(.horizontal)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Done") {
-                        saveAndDismiss()
+                        dismiss()
                     }
                 }
             }
             .onAppear {
                 loadExistingProgress()
             }
-            .onDisappear {
-                saveAndDismiss()
+            .background(Color(.systemBackground).opacity(0.95))
+            .onReceive(Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()) { _ in
+                // The view will automatically update because we're using a computed property
+                // for elapsedSeconds that reads from habitStore
             }
         }
-        .presentationDetents([.height(500)])
-    }
-    
-    private func loadExistingProgress() {
-        if let progress = habitStore.getProgress(for: habit.id) {
-            if let count = progress.count {
-                currentCount = count
-            }
-            if let duration = progress.duration {
-                elapsedSeconds = duration
-            }
-        }
-    }
-    
-    private func saveAndDismiss() {
-        if timerRunning {
-            stopTimer()
-        }
-        
-        switch habit.trackingUnit {
-        case .count:
-            habitStore.updateProgress(for: habit.id, count: currentCount)
-        case .time:
-            habitStore.updateProgress(for: habit.id, duration: elapsedSeconds)
-        }
-        
-        dismiss()
+        .presentationDetents([.fraction(0.4)])
+        .presentationDragIndicator(.visible)
+        .presentationCornerRadius(30)
+        .interactiveDismissDisabled(false)
     }
     
     // Count-based tracking interface
     var countBasedTracking: some View {
-        VStack(spacing: 30) {
+        VStack(spacing: 20) {
             // Current count display
             Text("\(currentCount)")
-                .font(.system(size: 72, weight: .bold, design: .rounded))
+                .font(.system(size: 60, weight: .bold, design: .rounded))
                 .foregroundColor(habit.color)
             
             // Increment/Decrement controls
@@ -110,18 +96,22 @@ struct HabitTrackingSheet: View {
             
             if let targetCount = habit.targetCount {
                 Text("Target: \(targetCount)")
+                    .font(.footnote)
                     .foregroundColor(.gray)
             }
         }
-        .padding()
+        .padding(.vertical, 8)
+        .onChange(of: currentCount) { _ in
+            habitStore.updateProgress(for: habit.id, count: currentCount)
+        }
     }
     
     // Time-based tracking interface
     var timeBasedTracking: some View {
-        VStack(spacing: 30) {
+        VStack(spacing: 20) {
             // Timer display
             Text(formattedTime)
-                .font(.system(size: 72, weight: .bold, design: .rounded))
+                .font(.system(size: 60, weight: .bold, design: .rounded))
                 .foregroundColor(habit.color)
             
             // Timer controls
@@ -132,7 +122,7 @@ struct HabitTrackingSheet: View {
                         .foregroundColor(timerRunning ? .red : habit.color)
                 }
                 
-                Button(action: { elapsedSeconds = 0 }) {
+                Button(action: resetTimer) {
                     Image(systemName: "arrow.counterclockwise.circle.fill")
                         .font(.system(size: 44))
                         .foregroundColor(.gray)
@@ -140,44 +130,45 @@ struct HabitTrackingSheet: View {
             }
             
             // Quick add buttons
-            HStack(spacing: 15) {
-                QuickTimeButton(text: "+1m", action: { elapsedSeconds += 60 })
-                QuickTimeButton(text: "+5m", action: { elapsedSeconds += 300 })
-                QuickTimeButton(text: "+10m", action: { elapsedSeconds += 600 })
+            HStack(spacing: 12) {
+                QuickTimeButton(text: "+1m", action: { addTime(minutes: 1) }, habit: habit)
+                QuickTimeButton(text: "+5m", action: { addTime(minutes: 5) }, habit: habit)
+                QuickTimeButton(text: "+10m", action: { addTime(minutes: 10) }, habit: habit)
             }
             
             if let targetTime = habit.targetTime {
                 Text("Target: \(targetTime.hours)h \(targetTime.minutes)m")
+                    .font(.footnote)
                     .foregroundColor(.gray)
             }
         }
-        .padding()
+        .padding(.vertical, 8)
+    }
+    
+    private func loadExistingProgress() {
+        if let progress = habitStore.getProgress(for: habit.id) {
+            if let count = progress.count {
+                currentCount = count
+            }
+        }
     }
     
     private func startTimer() {
-        timerRunning = true
-        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-            elapsedSeconds += 1
-        }
+        habitStore.startTimer(for: habit.id)
     }
     
     private func stopTimer() {
-        timerRunning = false
-        timer?.invalidate()
-        timer = nil
+        habitStore.stopTimer(for: habit.id)
     }
     
-    private func saveProgress() {
-        // Save progress based on tracking type
-        if habit.trackingUnit == .count {
-            // Save count progress
-        } else {
-            // Save time progress
-            if timerRunning {
-                stopTimer()
-            }
-        }
-        dismiss()
+    private func resetTimer() {
+        stopTimer()
+        habitStore.updateProgress(for: habit.id, duration: 0)
+    }
+    
+    private func addTime(minutes: Int) {
+        let newSeconds = (habitStore.getProgress(for: habit.id)?.duration ?? 0) + (minutes * 60)
+        habitStore.updateProgress(for: habit.id, duration: newSeconds)
     }
 }
 
@@ -185,15 +176,17 @@ struct HabitTrackingSheet: View {
 struct QuickTimeButton: View {
     let text: String
     let action: () -> Void
+    let habit: Habit
     
     var body: some View {
         Button(action: action) {
             Text(text)
-                .font(.subheadline)
+                .font(.footnote)
                 .bold()
-                .padding(.horizontal, 12)
-                .padding(.vertical, 8)
-                .background(Color(.systemGray5))
+                .foregroundColor(.white)
+                .padding(.horizontal, 10)
+                .padding(.vertical, 6)
+                .background(habit.color.opacity(0.8))
                 .cornerRadius(8)
         }
     }
